@@ -5,5 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-content padding>
-Alarmas
+  <ion-item *ngFor="let alarm of alarmas">
+    <ion-label>{{ alarm.name }}</ion-label>
+    <ion-toggle (ionChange)="alarmChange(this)" checked="{{ alarm.active }}"></ion-toggle>
+  </ion-item>
 </ion-content>

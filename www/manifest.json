@@ -1,6 +1,6 @@
 {
-  "name": "Tero",
-  "short_name": "Tero",
+  "name": "Ionic",
+  "short_name": "Ionic",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
@@ -10,5 +10,4 @@
   }],
   "background_color": "#4e8ef7",
   "theme_color": "#4e8ef7"
-  "gcm_sender_id": "482941778795"
 }

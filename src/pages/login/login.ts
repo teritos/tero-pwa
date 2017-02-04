@@ -5,6 +5,8 @@ import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/toPromise';
 
 import { TabsPage } from '../tabs/tabs';
+import { Constants } from '../../app/constants';
+
 
 /*
   Generated class for the Login page.
@@ -24,7 +26,8 @@ export class LoginPage {
               public navParams: NavParams,
               public storage: Storage,
               public loadingCtrl: LoadingController,
-              public http: Http) {
+              public http: Http,
+              private constants: Constants) {
 
   }
 
@@ -51,7 +54,7 @@ export class LoginPage {
     });
 
     loader.present();
-    this.http.post('https://a04b6fb2.ngrok.io/dash/ajax-login/', JSON.stringify({
+    this.http.post(this.constants.getURL() + '/dash/ajax-login/', JSON.stringify({
       "username": this.username,
       "password": this.password
     }))
@@ -59,6 +62,11 @@ export class LoginPage {
     .then((res) => {
       //let data = res.json();
       this.storage.set('authenticated', true);
+
+      // Esto es solo para Devel hasta implementar la autorizacion por token
+      this.storage.set('username', this.username);
+      this.storage.set('password', this.password);
+
       this.navCtrl.push(TabsPage);
       loader.dismiss();
     })
