@@ -15,7 +15,11 @@ export class AlarmService {
     //return this.http.get('http://localhost:8000/api/cliente/?format=json')
     //.map(this.extractData);
 
-    let headers = new Headers({ 'Authorization': 'Basic ' + this.constants.getToken() });
+    let headers = new Headers({
+      'Authorization': 'Basic ' + this.constants.getToken(),
+      'Accept': 'application/json',
+      'Content-Type': 'application/json '
+    });
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this.constants.getURL() + '/api/v1/alarm/?format=json', options)

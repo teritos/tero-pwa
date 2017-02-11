@@ -25,8 +25,7 @@ export class AlarmPage {
               public actionSheetCtrl: ActionSheetController) {
 
 
-    alarmService.getAlarms()
-    .subscribe(alarms => this.alarms = alarms);
+    this.actualizarAlarmas();
   }
 
   ionViewDidLoad() {
@@ -39,6 +38,12 @@ export class AlarmPage {
     this.platform.exitApp();
   }
 
+  actualizarAlarmas() {
+    // Actualizar alarmas
+    this.alarmService.getAlarms()
+    .subscribe(alarms => this.alarms = alarms);
+  }
+
   presentActionSheet(id) {
 
     let actionSheet = this.actionSheetCtrl.create({
@@ -49,15 +54,25 @@ export class AlarmPage {
           role: 'activar',
           handler: () => {
             this.alarmService.changeAlarm(id, 1)
-            .subscribe(res => alert(res));
+            .subscribe( () => {
+              this.alarmService.getAlarms()
+              .subscribe(alarms => this.alarms = alarms);
+            })
           }
         }, {
             text: 'Desactivar',
             role: 'Desactivar',
             handler: () => {
               this.alarmService.changeAlarm(id, 0)
-              .subscribe(res => alert(res));
+              .subscribe( () => {
+                this.alarmService.getAlarms()
+                .subscribe(alarms => this.alarms = alarms);
+              })
             }
+        }, {
+            text: 'Cancelar',
+            role: 'Cancelar',
+            handler: () => {}
         }
       ]
     });
