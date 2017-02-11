@@ -7,7 +7,7 @@
 <ion-content padding>
   <ion-item *ngFor="let alarm of alarms">
     <ion-label (click)="presentActionSheet(alarm.id)">{{ alarm.label }}</ion-label>
-    <ion-badge [hidden]="!alarm.active" item-right>Activada</ion-badge>
-    <ion-badge [hidden]="alarm.active" item-right>Desactivada</ion-badge>
+    <ion-badge [hidden]="!alarm.active" color="primary" item-right>Activada</ion-badge>
+    <ion-badge [hidden]="alarm.active" color="danger" item-right>Desactivada</ion-badge>
   </ion-item>
 </ion-content>
