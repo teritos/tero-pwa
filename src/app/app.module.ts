@@ -8,7 +8,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AlarmPage } from '../pages/alarm/alarm';
 import { LoginPage } from '../pages/login/login';
 import { AlarmService } from './alarm.service';
-import { Constants } from './constants';
+import { Constantes } from './constants';
 
 @NgModule({
   declarations: [
@@ -32,9 +32,9 @@ import { Constants } from './constants';
     LoginPage
   ],
   providers: [
-    AlarmService,
-    Constants,
     Storage,
+    AlarmService,
+    Constantes,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

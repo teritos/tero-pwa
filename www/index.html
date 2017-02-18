@@ -56,9 +56,8 @@
         OneSignal.getUserId().then(function(userId) {
           alert("Ahora estas subscripto");
           console.log("OneSignal User ID:", userId);
-          $.post("https://a04b6fb2.ngrok.io/dash/set-id", {
+          $.post("localhost:8000/api/v1/device/" + userId + "/", {
             "active": isSubscribed,
-            "id": userId
           }, function(){
             alert("ID guardado");
           })

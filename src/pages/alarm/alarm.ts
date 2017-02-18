@@ -40,8 +40,13 @@ export class AlarmPage {
 
   actualizarAlarmas() {
     // Actualizar alarmas
-    this.alarmService.getAlarms()
-    .subscribe(alarms => this.alarms = alarms);
+    this.storage.get('token').then((token) => {
+      console.log('TOKEN --->');
+      console.log(token);
+      this.alarmService.getAlarms(token)
+      .subscribe(alarms => this.alarms = alarms);
+    });
+
   }
 
   presentActionSheet(id) {
@@ -53,20 +58,32 @@ export class AlarmPage {
           text: 'Activar',
           role: 'activar',
           handler: () => {
-            this.alarmService.changeAlarm(id, 1)
-            .subscribe( () => {
-              this.alarmService.getAlarms()
-              .subscribe(alarms => this.alarms = alarms);
+            this.storage.get('token').then((token) => {
+              this.alarmService.changeAlarm(token, id, 1)
+              .subscribe( () => {
+                this.storage.get('token').then((token) => {
+                  console.log('TOKEN --->');
+                  console.log(token);
+                  this.alarmService.getAlarms(token)
+                  .subscribe(alarms => this.alarms = alarms);
+                });
+              })
             })
           }
         }, {
             text: 'Desactivar',
             role: 'Desactivar',
             handler: () => {
-              this.alarmService.changeAlarm(id, 0)
-              .subscribe( () => {
-                this.alarmService.getAlarms()
-                .subscribe(alarms => this.alarms = alarms);
+              this.storage.get('token').then((token) => {
+                this.alarmService.changeAlarm(token, id, 0)
+                .subscribe( () => {
+                  this.storage.get('token').then((token) => {
+                    console.log('TOKEN --->');
+                    console.log(token);
+                    this.alarmService.getAlarms(token)
+                    .subscribe(alarms => this.alarms = alarms);
+                  });
+                })
               })
             }
         }, {

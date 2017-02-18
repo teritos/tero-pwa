@@ -1,15 +1,13 @@
-import { Storage } from '@ionic/storage';
 
-export class Constants {
+export class Constantes {
+    token: string;
 
-    constructor(){}
+    constructor(){
+
+    }
 
     getURL() {
       return 'http://localhost:8000';
-    }
-
-    getToken(){
-      return btoa('admin:juanjuan');
     }
 
 }

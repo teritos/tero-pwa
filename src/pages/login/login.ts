@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/toPromise';
 
 import { TabsPage } from '../tabs/tabs';
-import { Constants } from '../../app/constants';
+import { Constantes } from '../../app/constants';
 
 
 /*
@@ -27,7 +27,7 @@ export class LoginPage {
               public storage: Storage,
               public loadingCtrl: LoadingController,
               public http: Http,
-              private constants: Constants) {
+              private constants: Constantes) {
 
   }
 
@@ -64,9 +64,11 @@ export class LoginPage {
       this.storage.set('authenticated', true);
 
       // Esto es solo para Devel hasta implementar la autorizacion por token
-      this.storage.set('username', this.username);
-      this.storage.set('password', this.password);
-
+      this.storage.set('token', btoa(this.username + ':' + this.password));
+      this.storage.get('token').then((token) => {
+        console.log('TOKEN --->');
+        console.log(token);
+      });
       this.navCtrl.push(TabsPage);
       loader.dismiss();
     })
