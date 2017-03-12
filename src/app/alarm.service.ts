@@ -12,8 +12,6 @@ export class AlarmService {
   constructor (private http: Http, private constants: Constantes, private st: Storage) {}
 
   getAlarms(token): Observable<Alarm[]> {
-    //return this.http.get('http://localhost:8000/api/cliente/?format=json')
-    //.map(this.extractData);
 
     let headers = new Headers({
       'Authorization': 'Basic ' + token,
@@ -21,7 +19,6 @@ export class AlarmService {
       'Content-Type': 'application/json '
     });
     let options = new RequestOptions({ headers: headers });
-    console.log(token);
     return this.http.get(this.constants.getURL() + '/api/v1/alarm/?format=json', options)
     .map((res) => res.json());
 

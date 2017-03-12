@@ -4,6 +4,7 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/toPromise';
 
+import { OneSignalService } from '../../app/onesignal.service';
 import { TabsPage } from '../tabs/tabs';
 import { Constantes } from '../../app/constants';
 
@@ -27,7 +28,8 @@ export class LoginPage {
               public storage: Storage,
               public loadingCtrl: LoadingController,
               public http: Http,
-              private constants: Constantes) {
+              private constants: Constantes,
+              private osService: OneSignalService) {
 
   }
 
@@ -36,8 +38,8 @@ export class LoginPage {
       Si el usuario esta logueado accede a la vista de tabs
       de lo contrario debera iniciar sesion
     */
-    this.storage.get('authenticated').then((val) => {
-      if (val === true) {
+    this.storage.get('token').then((val) => {
+      if (val != null || val != undefined) {
         this.navCtrl.push(TabsPage);
       }
     });
@@ -71,6 +73,19 @@ export class LoginPage {
       });
       this.navCtrl.push(TabsPage);
       loader.dismiss();
+
+      OneSignal.getIds().then((data) => {
+        console.log('Usuario Data: ' + JSON.stringify(data));
+        console.log('Usuario ID: ' + data.userId);
+        console.log('Usuario Token: ' + data.pushToken);
+        this.storage.get('token').then((token) => {
+          this.osService.setOneSignalID(token, '888')
+          .subscribe(res => {
+            console.log(res);
+          });
+        });
+      });
+
     })
     .catch((err) => {
       //var data = err.json();

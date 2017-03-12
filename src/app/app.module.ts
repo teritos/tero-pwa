@@ -8,6 +8,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AlarmPage } from '../pages/alarm/alarm';
 import { LoginPage } from '../pages/login/login';
 import { AlarmService } from './alarm.service';
+import { OneSignalService } from './onesignal.service';
 import { Constantes } from './constants';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { Constantes } from './constants';
   ],
   providers: [
     Storage,
+    OneSignalService,
     AlarmService,
     Constantes,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

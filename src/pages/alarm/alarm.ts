@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Alarm } from '../../app/alarm';
-import { AlarmService } from '../../app/alarm.service';
+
 import { NavController, NavParams, Platform, ActionSheetController} from 'ionic-angular';
 
+import { Alarm } from '../../app/alarm';
+import { AlarmService } from '../../app/alarm.service';
 
 /*
   Generated class for the Alarm page.
@@ -24,7 +25,6 @@ export class AlarmPage {
               public alarmService: AlarmService,
               public actionSheetCtrl: ActionSheetController) {
 
-
     this.actualizarAlarmas();
   }
 
@@ -41,8 +41,8 @@ export class AlarmPage {
   actualizarAlarmas() {
     // Actualizar alarmas
     this.storage.get('token').then((token) => {
-      console.log('TOKEN --->');
-      console.log(token);
+      //console.log('TOKEN --->');
+      //console.log(token);
       this.alarmService.getAlarms(token)
       .subscribe(alarms => this.alarms = alarms);
     });
