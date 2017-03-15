@@ -21,7 +21,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 
       // Enable to debug issues.
-      OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+      //OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
       OneSignal.startInit('fc118136-de98-495d-8a08-cb7163897d06', '327499183179');
 

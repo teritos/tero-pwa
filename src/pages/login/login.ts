@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/toPromise';
 
 import { OneSignalService } from '../../app/onesignal.service';
+import { OneSignal } from 'ionic-native';
 import { TabsPage } from '../tabs/tabs';
 import { Constantes } from '../../app/constants';
 
@@ -75,11 +76,8 @@ export class LoginPage {
       loader.dismiss();
 
       OneSignal.getIds().then((data) => {
-        console.log('Usuario Data: ' + JSON.stringify(data));
-        console.log('Usuario ID: ' + data.userId);
-        console.log('Usuario Token: ' + data.pushToken);
         this.storage.get('token').then((token) => {
-          this.osService.setOneSignalID(token, '888')
+          this.osService.setOneSignalID(token, data.userId)
           .subscribe(res => {
             console.log(res);
           });

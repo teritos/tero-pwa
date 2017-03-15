@@ -7,7 +7,7 @@ export class Constantes {
     }
 
     getURL() {
-      return 'http://localhost:8000';
+      return 'https://tero.ninsei.tk/';
     }
 
 }
