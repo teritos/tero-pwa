@@ -3,19 +3,19 @@ import { Storage } from '@ionic/storage';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AlarmPage } from '../pages/alarm/alarm';
 import { LoginPage } from '../pages/login/login';
 import { AlarmService } from './alarm.service';
 import { OneSignalService } from './onesignal.service';
+import { ImageService } from './image.service';
 import { Constantes } from './constants';
+
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
     TabsPage,
     AlarmPage,
     LoginPage
@@ -27,7 +27,6 @@ import { Constantes } from './constants';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
     AlarmPage,
     TabsPage,
     LoginPage
@@ -36,6 +35,7 @@ import { Constantes } from './constants';
     Storage,
     OneSignalService,
     AlarmService,
+    ImageService,
     Constantes,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
