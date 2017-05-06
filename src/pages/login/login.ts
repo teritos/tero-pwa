@@ -88,7 +88,7 @@ export class LoginPage {
     .catch((err) => {
       //var data = err.json();
       this.storage.set('authenticated', false);
-      alert(err);
+      console.log(err);
       loader.dismiss();
     });
 

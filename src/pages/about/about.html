@@ -1,5 +1,13 @@
 <ion-content padding>
-  <ion-item *ngFor="let image of images">
-    <img [src]="url+image.image"/>
-  </ion-item>
+  <!--
+-->
+<ion-refresher (ionRefresh)="refreshImagenes($event)">
+  <ion-refresher-content>
+  </ion-refresher-content>
+</ion-refresher>
+
+<ion-item *ngFor="let image of images">
+  <img [src]="image.full_url"/>
+</ion-item>
+
 </ion-content>

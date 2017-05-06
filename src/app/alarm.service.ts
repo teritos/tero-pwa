@@ -38,7 +38,7 @@ export class AlarmService {
     );
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.put(this.constants.getURL() + '/api/v1/alarm/' + id + '/',
+    return this.http.put(this.constants.getURL() + '/api/v1/alarm/' + id,
     JSON.stringify({ status: active }),
     options)
     .map((res) => res.json());

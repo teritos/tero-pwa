@@ -10,20 +10,24 @@ import { Storage } from '@ionic/storage';
 })
 export class AboutPage {
   images = Array();
-  url = "http://localhost:8000";
 
   constructor(public navCtrl: NavController, public imageService: ImageService,
               public storage: Storage) {
       this.updateImages();
   }
 
+  refreshImagenes(refresher) {
+    this.updateImages();
+    refresher.complete();
+  }
+
   updateImages() {
     // Actualizar las imagenes
     this.storage.get("token").then((token) => {
+      console.log('Descargando imagenes');
       this.imageService.getLastImages(token)
       .subscribe((images) => this.images = images);
     });
 
   }
-
 }
